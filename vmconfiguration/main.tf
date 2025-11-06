@@ -1,3 +1,12 @@
+/*
+  Resources to create
+  1. Resource Group
+  2. Vnet with 2 subnets
+  3. Disk encryption set
+  4. key vault 
+  5. encrypted key to encrypt the managed disk
+  6. Encrypted managed disk
+*/
 resource "random_integer" "int" {
   max = 999
   min = 100
