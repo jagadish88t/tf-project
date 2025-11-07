@@ -36,7 +36,7 @@ module "vnet" {
   it_num              = local.it_num
   tags                = var.tags
 
-  depends_on = [ module.rg ]
+  //depends_on = [ module.rg ]
 }
 
 module "keyvault" {
@@ -44,12 +44,12 @@ module "keyvault" {
   resource_group_name = module.rg.name
   env                 = var.env
   proj_acro           = var.proj_acro
-  tenant_id           = var.tenant_id
-  user_object_id      = var.user_object_id
+  tenant_id           = data.azurerm_client_config.current.tenant_id
+  user_object_id      = data.azurerm_client_config.current.object_id
   it_num              = local.it_num
   tags                = var.tags
   purge_protection_enabled = "true"
-  depends_on = [ module.rg ]
+  //depends_on = [ module.rg ]
 }
 
 resource "azurerm_role_assignment" "kv_user_access" {
