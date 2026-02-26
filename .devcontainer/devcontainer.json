@@ -1,6 +1,16 @@
 {
-  "image": "mcr.microsoft.com/devcontainers/universal:2",
-  "features": {
-    "ghcr.io/devcontainers/features/terraform:1": {}
+  "name": "tf-project",
+  "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+
+  "customizations": {
+    "codespaces": {
+      "repositories": {
+        "jagadish88t/tf-modules": {
+          "permissions": {
+            "contents": "read"
+          }
+        }
+      }
+    }
   }
 }
