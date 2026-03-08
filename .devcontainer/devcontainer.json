@@ -4,15 +4,25 @@
 
   // 1. Install Tools (Docker-in-Docker & Kubernetes tools)
   "features": {
-    "ghcr.io/devcontainers/features/docker-in-docker:1": {},
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {},
     "ghcr.io/devcontainers/features/kubectl-helm-minikube:1": {
       "version": "latest",
+      "helm": "latest",
       "minikube": "latest"
     }
   },
 
-  // 2. Repository Permissions for your Terraform Modules
+  // 2. VS Code extensions for Kubernetes & YAML development
   "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-kubernetes-tools.vscode-kubernetes-tools",
+        "redhat.vscode-yaml",
+        "github.vscode-github-actions"
+      ]
+    },
+
+    // 3. Repository Permissions for your Terraform Modules
     "codespaces": {
       "repositories": {
         "jagadish88t/tf-modules": {
@@ -24,6 +34,7 @@
     }
   },
 
-  // 3. Start the local cluster automatically after the container is built
-  "postCreateCommand": "minikube start --driver=docker"
+  // 4. Start the local cluster automatically after the container is built
+  // Waits up to 120s for the minikube node to be fully Ready before proceeding
+  "postCreateCommand": "minikube start --driver=docker && kubectl wait --for=condition=Ready node/minikube --timeout=120s"
 }
