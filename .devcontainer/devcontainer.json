@@ -9,6 +9,9 @@
       "version": "latest",
       "helm": "latest",
       "minikube": "latest"
+    },
+      "ghcr.io/devcontainers/features/terraform:1": {
+      "version": "latest"
     }
   },
 
