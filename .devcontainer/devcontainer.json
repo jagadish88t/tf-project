@@ -1,7 +1,17 @@
 {
-  "name": "tf-project",
+  "name": "Cloud-Dev-Argo-Lab",
   "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
 
+  // 1. Install Tools (Docker-in-Docker & Kubernetes tools)
+  "features": {
+    "ghcr.io/devcontainers/features/docker-in-docker:1": {},
+    "ghcr.io/devcontainers/features/kubectl-helm-minikube:1": {
+      "version": "latest",
+      "minikube": "latest"
+    }
+  },
+
+  // 2. Repository Permissions for your Terraform Modules
   "customizations": {
     "codespaces": {
       "repositories": {
@@ -12,5 +22,8 @@
         }
       }
     }
-  }
+  },
+
+  // 3. Start the local cluster automatically after the container is built
+  "postCreateCommand": "minikube start --driver=docker"
 }
